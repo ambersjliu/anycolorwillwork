@@ -57,7 +57,7 @@ export class GameStateService {
   submitRound(baseColor: string, overlayColor: string, opacity: number) {
     const baseColorToRGB = this.colorService.hexToRGB(baseColor);
     const overlayColorToRGB = this.colorService.hexToRGB(overlayColor);
-    const opacityNormalized = parseFloat((opacity / 100).toPrecision(3));
+    const opacityNormalized = parseFloat((opacity).toPrecision(3));
     const blendedColor = this.colorService.blendColors(baseColorToRGB, overlayColorToRGB, opacityNormalized);
 
     const distance = this.colorService.calculateColorDistance(baseColorToRGB, overlayColorToRGB);

@@ -1,8 +1,12 @@
 <div>
   <h1>any color will work</h1>
-  <p>Match the given colour with a base colour and a lighting overlay.</p>
-  <a routerLink="/next">
-    Next
-  </a>
+  @if (state === "home"){
+    <app-home></app-home>
+  }
+  @else if (state === "game"){
+    <app-game></app-game>
+  }
+  @else {
+    <app-summary></app-summary>
+  }
 </div>
-<router-outlet></router-outlet>

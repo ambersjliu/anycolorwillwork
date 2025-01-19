@@ -1,9 +1,20 @@
 :root {
-    --main-bg-color: #f4f3f2;
-    --main-text-color: #333A3F;
+  --main-bg-color: #f4f3f2;
+  --main-text-color: #333a3f;
 }
 
 * {
-    background-color: var(--main-bg-color);
-    color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+.color-square {
+  display: flex;
+  width: 200px; /* Total width of the square */
+  height: 200px; /* Total height of the square */
+}
+
+app-colordiv {
+  flex: 1; /* Ensures each color div takes up half the space */
+  height: 100%; /* Ensure the full height of the parent is used */
 }

@@ -1,3 +1,15 @@
 <div>
-    <p>home component</p>
+    <p>10 years ago, nobody could agree on the colour of a Certain Dress.</p>
+    <p>It had many of us thinking: do objects have "true" colours?</p>
+    <p>Turns out, our brain infers colours based on environment and surrounding values.</p>
+    <p>Challenge yourself and explore your perception of colour by building colours with bases and overlays!</p>
+    <div class="color-square">
+        <app-colordiv [color]="colour1"></app-colordiv>
+        <app-colordiv [color]="colour2"></app-colordiv>
+    </div>
+    <form [formGroup]="gameParametersForm" (submit)="startGame()">
+        <label for="rounds-input">Number of rounds:</label>
+        <input id="rounds-input" type="number" formControlName="numRounds">
+        <button type="submit">Play!</button>
+    </form>
 </div>

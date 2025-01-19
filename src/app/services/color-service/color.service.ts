@@ -43,7 +43,7 @@ export class ColorService {
   
     // Normalize to 0-100
     return (distance / maxDistance) * 100;
-    }
+  }
 
   /**
    * @returns Returns a random colour in RGB format

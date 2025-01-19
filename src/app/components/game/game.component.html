@@ -1,11 +1,24 @@
 <div>
     <p>Match the colour on the right side of the square.</p>
-    <div class="color-square">
-        <!-- <app-colordiv [color]="contextColor"></app-colordiv>
-        <app-colordiv [color]="targetColor"></app-colordiv> -->
+    <div>
+        <p>Round: {{ round }} / {{ gameStateService.getTotalRounds() }}</p>
+        <p>Score: {{ totalScore }}</p>
     </div>
-    <form>
+    <div class="color-square">
+        <app-colordiv [color]="contextColor"></app-colordiv>
+        <app-colordiv [color]="targetColor"></app-colordiv>
+    </div>
+    <form [formGroup]="colorForm" (submit)="submitRound()">
+        <input [(colorPicker)]="baseColor"
+        [style.background-color]="baseColor"
+        [cpOutputFormat]="'hex'">
+        
+        <input [(colorPicker)]="overlayColor"
+        [style.background-color]="overlayColor"
+        [cpOutputFormat]="'hex'">
 
+        <input type="range" min="0" max="100" value="50" formControlName="opacity">
+        <button type="submit">Submit</button>
     </form>
 
 </div>

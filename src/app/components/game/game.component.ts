@@ -101,6 +101,7 @@ export class GameComponent implements OnInit, OnDestroy{
       this.colorForm.reset();
       this.resetColorPickers();
       if (this.gameStateService.isGameFinished()){
+        this.gameStateService.updateSummaryService();
         this.gameStateService.reset();
         this.viewStateService.setState("summary");
       }

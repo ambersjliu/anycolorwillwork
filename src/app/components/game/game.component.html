@@ -9,14 +9,17 @@
         <app-colordiv [color]="targetColor"></app-colordiv>
     </div>
     <form [formGroup]="colorForm" (submit)="submitRound()">
+        <label for="baseColorPicker">Base Colour</label>
         <input [(colorPicker)]="baseColor"
         [style.background-color]="baseColor"
-        [cpOutputFormat]="'hex'">
+        [cpOutputFormat]="'hex'" id="baseColorPicker">
         
+        <label for="overlayColorPicker">Overlay Colour</label>
         <input [(colorPicker)]="overlayColor"
         [style.background-color]="overlayColor"
-        [cpOutputFormat]="'hex'">
+        [cpOutputFormat]="'hex'" id="overlayColorPicker">
 
+        <label for="overlayOpacityPicker">Overlay Opacity</label>
         <input type="range" min="0" max="100" value="50" formControlName="opacity">
         <button type="submit">Submit</button>
     </form>

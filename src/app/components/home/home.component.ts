@@ -16,13 +16,14 @@ export class HomeComponent {
   gameStateService: GameStateService = inject(GameStateService);
   
   gameParametersForm = new FormGroup({
-    numRounds: new FormControl(0)
+    numRounds: new FormControl(1)
   });
   colour1: RGB = {r: 113, g: 121, b: 157};
   colour2: RGB = {r: 95, g: 80, b: 87};
 
   startGame(){
     const numRounds = this.gameParametersForm.value!.numRounds!;
+    this.gameParametersForm.reset();
     this.viewStateService.setState("game");
     this.gameStateService.setTotalRounds(numRounds);
   }

@@ -1,1 +1,22 @@
-<p>summary works!</p>
+<h2>Game Summary</h2>
+<p>Total Score: {{ summaryData.totalScore }}</p>
+<p>Total Rounds: {{ summaryData.totalRounds }}</p>
+<h3>Metrics</h3>
+<ul>
+  <li>Average Overlay Intensity: {{ summaryData.metrics.avgOverlayIntensity }}</li>
+  <li>Average Base Intensity: {{ summaryData.metrics.avgBaseIntensity }}</li>
+</ul>
+
+<h3>Round Results</h3>
+<div>
+    @for(result of summaryData.results; track result){
+        <p>
+            Round: {{ result.score > 0 ? 'Success' : 'Failure' }} |
+            Opacity: {{ result.opacity }} |
+            Distance: {{ result.distance }}
+          </p>
+    }
+</div>
+<div>
+    <button (click)="playAgain()">Play again</button>
+</div>

@@ -5,6 +5,7 @@ import { RGB } from '../../interfaces/rgb';
 import { GameStateService } from '../../services/game-state/game-state.service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -31,18 +32,59 @@ export class GameComponent implements OnInit, OnDestroy{
   overlayColor: string = "#000000";
   baseColor: string = "#000000";
 
-  constructor(){
-  }
+  // constructor(){
+  // }
+
+  // ngOnInit() {
+  //   this.reset();
+  //   this.gameStateService.nextRound();
+  //   this.updateValues();
+  // }
+
+  // ngOnDestroy(){
+
+  // }
+
+  private subscriptions: Subscription = new Subscription();
+
+  constructor() {}
 
   ngOnInit() {
     this.reset();
+    this.initializeSubscriptions();
     this.gameStateService.nextRound();
-    this.updateValues();
   }
 
-  ngOnDestroy(){
-
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
+
+  initializeSubscriptions() {
+    this.subscriptions.add(
+      this.gameStateService.currentRound$.subscribe((round) => {
+        this.round = round;
+      })
+    );
+
+    this.subscriptions.add(
+      this.gameStateService.totalScore$.subscribe((score) => {
+        this.totalScore = score;
+      })
+    );
+
+    this.subscriptions.add(
+      this.gameStateService.contextColor$.subscribe((color) => {
+        this.contextColor = color;
+      })
+    );
+
+    this.subscriptions.add(
+      this.gameStateService.targetColor$.subscribe((color) => {
+        this.targetColor = color;
+      })
+    );
+  }
+
   
   
   submitRound(){
@@ -57,6 +99,7 @@ export class GameComponent implements OnInit, OnDestroy{
       console.log("i called")
       this.gameStateService.submitRound(baseColor, overlayColor, opacity);
       this.colorForm.reset();
+      this.resetColorPickers();
       if (this.gameStateService.isGameFinished()){
         this.gameStateService.reset();
         this.viewStateService.setState("summary");
@@ -64,13 +107,12 @@ export class GameComponent implements OnInit, OnDestroy{
     }
   }
 
-  updateValues() {
-    const { context, target } = this.gameStateService.getRoundColors();
-    this.contextColor = context;
-    this.targetColor = target;
-    this.totalScore = this.gameStateService.getTotalScore();
-    this.round = this.gameStateService.getCurrentRound();
-  }
+  // updateValues() {
+  //   this.contextColor = context;
+  //   this.targetColor = target;
+  //   this.totalScore = this.gameStateService.getTotalScore();
+  //   this.round = this.gameStateService.getCurrentRound();
+  // }
 
   resetColorPickers(){
     this.overlayColor = "#000000";

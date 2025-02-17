@@ -60,7 +60,7 @@ export class GameStateService {
     const opacityNormalized = parseFloat((opacity).toPrecision(3));
     const blendedColor = this.colorService.blendColors(baseColorToRGB, overlayColorToRGB, opacityNormalized);
 
-    const distance = this.colorService.calculateColorDistance(baseColorToRGB, overlayColorToRGB);
+    const distance = this.colorService.calculateColorDistance(baseColorToRGB, this.targetColorSubject.value);
     const score = distance < 25 ? 1 : 0;
     const totalScore = this.totalScoreSubject.value + score;
     this.totalScoreSubject.next(totalScore);

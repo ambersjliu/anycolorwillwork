@@ -31,17 +31,18 @@ export class ColorService {
    * @returns The perceived distance between them from 0-100
    */
   calculateColorDistance(color1: RGB, color2: RGB): number {
+    console.log(color2);
     const maxDistance = 805.8;
-    const rmean = Math.floor((color1.r + color2.r) / 2);
+    const rmean = (color1.r + color2.r) / 2;
     const r = color1.r - color2.r;
     const g = color1.g - color2.g;
     const b = color1.b - color2.b;
 
     const distance = Math.sqrt(
-      (((512 + rmean) * r * r) >> 8) + 4 * g * g + (((767 - rmean) * b * b) >> 8)
+      (2 + rmean / 256.0) * r * r + 4 * g * g + (2 + (255 - rmean) / 256.0) * b * b
     );
-  
-    // Normalize to 0-100
+
+    console.log("distance: " + distance);
     return (distance / maxDistance) * 100;
   }
 
@@ -68,6 +69,10 @@ export class ColorService {
     const r = parseInt(hex.slice(0, 2), 16);
     const g = parseInt(hex.slice(2, 4), 16);
     const b = parseInt(hex.slice(4, 6), 16);
+
+    console.log(r);
+    console.log(g);
+    console.log(b);
   
     return { r, g, b };
   }

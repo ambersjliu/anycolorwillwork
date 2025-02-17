@@ -96,7 +96,6 @@ export class GameComponent implements OnInit, OnDestroy{
     const overlayColor = this.colorForm.value?.overlayColor;
     const opacity = this.colorForm.value?.opacity! / 100;
     if (baseColor && overlayColor && opacity != null){
-      console.log("i called")
       this.gameStateService.submitRound(baseColor, overlayColor, opacity);
       this.colorForm.reset();
       this.resetColorPickers();
@@ -107,13 +106,6 @@ export class GameComponent implements OnInit, OnDestroy{
       }
     }
   }
-
-  // updateValues() {
-  //   this.contextColor = context;
-  //   this.targetColor = target;
-  //   this.totalScore = this.gameStateService.getTotalScore();
-  //   this.round = this.gameStateService.getCurrentRound();
-  // }
 
   resetColorPickers(){
     this.overlayColor = "#000000";

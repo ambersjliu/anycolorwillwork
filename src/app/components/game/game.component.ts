@@ -6,6 +6,7 @@ import { GameStateService } from '../../services/game-state/game-state.service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { RoundState, RoundStateService } from '../../services/round-state/round-state.service';
 
 @Component({
   selector: 'app-game',
@@ -31,19 +32,6 @@ export class GameComponent implements OnInit, OnDestroy{
   targetColor: RGB = {r: 0, g: 0, b: 0};
   overlayColor: string = "#000000";
   baseColor: string = "#000000";
-
-  // constructor(){
-  // }
-
-  // ngOnInit() {
-  //   this.reset();
-  //   this.gameStateService.nextRound();
-  //   this.updateValues();
-  // }
-
-  // ngOnDestroy(){
-
-  // }
 
   private subscriptions: Subscription = new Subscription();
 
